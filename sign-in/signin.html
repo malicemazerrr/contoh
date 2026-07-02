@@ -6,15 +6,6 @@
   <title>Sign In · KindlyJAR</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../global/style.css"/>
-  <script>
-    /* terapkan tema tersimpan sebelum render (anti-kedip) */
-    (function () {
-      try {
-        if (localStorage.getItem('theme') === 'dark')
-          document.documentElement.setAttribute('data-theme', 'dark');
-      } catch (e) {}
-    })();
-  </script>
 </head>
 <body class="auth-body">
 
@@ -30,7 +21,7 @@
     <h1 class="auth-title">Selamat Datang Kembali</h1>
     <p class="auth-sub">Masuk untuk melanjutkan kebaikanmu.</p>
 
-    <form class="auth-form" onsubmit="return false;">
+    <form class="auth-form" onsubmit="window.location.href='../dashboard/dashboard.html'; return false;">
       <label class="auth-field">
         <span>Email</span>
         <input type="email" placeholder="nama@email.com" autocomplete="email" required />

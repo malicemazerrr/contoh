@@ -1,0 +1,696 @@
+/* ── KEYFRAMES ── */
+@keyframes dashFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes dashSlideLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes dashFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dashFadeDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dashScaleFade {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── DASHBOARD LAYOUT ── */
+.dashboard-body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  /* override background-attachment:fixed dari style.css — penyebab choppy animation */
+  background-attachment: scroll;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  will-change: transform, opacity;
+  animation: dashSlideLeft 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  width: 260px;
+  min-width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  border-radius: 0 24px 24px 0;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 4px 0 24px rgba(33, 163, 255, 0.09);
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 8px !important;
+  margin-bottom: 28px;
+}
+
+.sidebar-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.78rem;
+  color: #b0b7c3;
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+.sidebar-nav {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 2px !important;
+}
+
+.sidebar-nav .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 0.93rem;
+  color: #3D3D4E !important;
+  text-decoration: none;
+  padding: 10px 12px !important;
+  border-radius: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-nav .sidebar-link:hover {
+  background: rgba(33, 163, 255, 0.08) !important;
+  color: #21A3FF !important;
+}
+
+.sidebar-nav .sidebar-link.active {
+  background: rgba(33, 163, 255, 0.13) !important;
+  color: #21A3FF !important;
+  font-weight: 700;
+}
+
+.sidebar-nav .sidebar-link svg {
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.sidebar-cta {
+  padding: 0 4px;
+  margin-top: 20px;
+}
+
+.btn-join-hero {
+  width: 100%;
+  background: #21A3FF;
+  color: #ffffff;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.93rem;
+  border: none;
+  border-radius: 50px;
+  padding: 13px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.12s;
+  box-shadow: 0 6px 20px rgba(33, 163, 255, 0.3);
+}
+
+.btn-join-hero:hover {
+  background: #1a8fe0;
+  transform: translateY(-1px);
+}
+
+/* ── DASHBOARD MAIN ── */
+.dash-right {
+  flex: 1;
+  min-width: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 36px;
+  z-index: 10;
+  will-change: transform, opacity;
+  animation: dashFadeDown 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s both;
+}
+
+.dash-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 28px 36px 48px;
+}
+
+.dash-greeting {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: #1A1A2E;
+}
+
+.dash-username {
+  color: #21A3FF;
+}
+
+.dash-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notif-btn {
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #3D3D4E;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+
+.notif-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(33, 163, 255, 0.2);
+}
+
+.dash-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 50px;
+  padding: 6px 18px 6px 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.dash-profile:hover {
+  background: #eef6ff;
+  box-shadow: 0 4px 16px rgba(33, 163, 255, 0.15);
+}
+
+.dash-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 2px solid rgba(33, 163, 255, 0.3);
+}
+
+.dash-profile-name {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #1A1A2E;
+}
+
+.dash-profile-email {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.74rem;
+  color: #b0b7c3;
+}
+
+/* ── SATU CARD BESAR ── */
+.dash-main-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 18px rgba(33, 163, 255, 0.07);
+  will-change: transform, opacity;
+  animation: dashFadeUp 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both;
+}
+
+/* Section di dalam card besar: pisahkan dengan garis */
+.dash-section {
+  padding: 0;
+}
+
+.dash-section + .dash-section {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(33, 163, 255, 0.1);
+}
+
+/* ── DASHBOARD CARDS (legacy) ── */
+.dash-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 18px rgba(33, 163, 255, 0.07);
+}
+
+.dash-card-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #1A1A2E;
+  margin-bottom: 4px;
+}
+
+.dash-card-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #6b7a8d;
+  margin-bottom: 20px;
+}
+
+.summary-row {
+  display: flex;
+  gap: 14px;
+}
+
+.summary-card:nth-child(1) { will-change: transform,opacity; animation: dashScaleFade 0.4s cubic-bezier(0.22,0.61,0.36,1) 0.35s both; }
+.summary-card:nth-child(2) { will-change: transform,opacity; animation: dashScaleFade 0.4s cubic-bezier(0.22,0.61,0.36,1) 0.45s both; }
+.summary-card:nth-child(3) { will-change: transform,opacity; animation: dashScaleFade 0.4s cubic-bezier(0.22,0.61,0.36,1) 0.55s both; }
+.summary-card:nth-child(4) { will-change: transform,opacity; animation: dashScaleFade 0.4s cubic-bezier(0.22,0.61,0.36,1) 0.65s both; }
+
+.summary-card {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid rgba(33, 163, 255, 0.12);
+  border-radius: 14px;
+  padding: 20px 18px;
+  cursor: pointer;
+  transition: background 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.summary-card:hover {
+  background: #21A3FF;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(33, 163, 255, 0.35);
+}
+
+.summary-card:hover .summary-value,
+.summary-card:hover .summary-label {
+  color: #ffffff;
+}
+
+.summary-card.primary {
+  background: #21A3FF;
+  border-color: transparent;
+  flex: 1.5;
+  box-shadow: 0 6px 20px rgba(33, 163, 255, 0.3);
+  cursor: default;
+}
+
+.summary-value {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.45rem;
+  color: #1A1A2E;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.summary-card.primary .summary-value {
+  font-size: 1.75rem;
+  color: #ffffff;
+}
+
+.summary-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.78rem;
+  color: #b0b7c3;
+}
+
+.summary-card.primary .summary-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── PROFILE DROPDOWN ── */
+.profile-wrap {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 220px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(33, 163, 255, 0.15);
+  border: 1px solid rgba(33, 163, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.profile-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.profile-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(33, 163, 255, 0.08);
+}
+
+.profile-dd-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  flex-shrink: 0;
+}
+
+.profile-dd-name {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #1A1A2E;
+}
+
+.profile-dd-email {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.72rem;
+  color: #b0b7c3;
+}
+
+.profile-dropdown-menu {
+  padding: 8px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #3D3D4E;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background 0.18s, color 0.18s;
+}
+
+.profile-menu-item:hover {
+  background: rgba(33, 163, 255, 0.08);
+  color: #21A3FF;
+}
+
+.profile-menu-item.danger {
+  color: #ef4444;
+}
+
+.profile-menu-item.danger:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
+
+.profile-menu-divider {
+  height: 1px;
+  background: rgba(33, 163, 255, 0.08);
+  margin: 6px 0;
+}
+
+/* ── NOTIFIKASI DROPDOWN ── */
+.notif-wrap {
+  position: relative;
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(33, 163, 255, 0.15);
+  border: 1px solid rgba(33, 163, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 9999;
+}
+
+.notif-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(33, 163, 255, 0.08);
+}
+
+.notif-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #1A1A2E;
+}
+
+.notif-badge {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #b0b7c3;
+  background: #f0f7ff;
+  padding: 2px 10px;
+  border-radius: 99px;
+}
+
+.notif-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 36px 20px;
+  color: #b0b7c3;
+}
+
+.notif-empty p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.85rem;
+  color: #b0b7c3;
+}
+
+/* ── ACTIVITY TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+.activity-table th {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #1A1A2E;
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 1.5px solid rgba(33, 163, 255, 0.1);
+}
+
+.activity-table td {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #3D3D4E;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(33, 163, 255, 0.05);
+}
+
+.activity-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.activity-table tbody tr:hover td {
+  background: rgba(33, 163, 255, 0.03);
+}
+
+.activity-table tbody tr:nth-child(1) { animation: dashFadeIn 0.35s ease 0.5s both; }
+.activity-table tbody tr:nth-child(2) { animation: dashFadeIn 0.35s ease 0.6s both; }
+.activity-table tbody tr:nth-child(3) { animation: dashFadeIn 0.35s ease 0.7s both; }
+.activity-table tbody tr:nth-child(4) { animation: dashFadeIn 0.35s ease 0.8s both; }
+
+.badge {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+.badge.berhasil { color: #22c55e; }
+.badge.gagal    { color: #ef4444; }
+
+/* ── TRENDING ── */
+.dash-trending {
+  margin-bottom: 20px;
+}
+
+.trending-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.trending-card {
+  background: #f7fbff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(33, 163, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(33, 163, 255, 0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.trending-card:nth-child(1) { will-change: transform,opacity; animation: dashFadeUp 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.55s both; }
+.trending-card:nth-child(2) { will-change: transform,opacity; animation: dashFadeUp 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.67s both; }
+.trending-card:nth-child(3) { will-change: transform,opacity; animation: dashFadeUp 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.79s both; }
+.trending-card:nth-child(4) { will-change: transform,opacity; animation: dashFadeUp 0.45s cubic-bezier(0.22,0.61,0.36,1) 0.91s both; }
+
+.trending-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(33, 163, 255, 0.18);
+}
+
+.trending-img {
+  width: 100%;
+  height: 148px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.trending-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.trending-card:hover .trending-img img {
+  transform: scale(1.06);
+}
+
+.trending-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.trending-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #1A1A2E;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.t-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.t-bar {
+  width: 100%;
+  height: 5px;
+  background: #d6eeff;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.t-fill {
+  height: 100%;
+  background: #21A3FF;
+  border-radius: 99px;
+}
+
+.t-pct {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.74rem;
+  color: #b0b7c3;
+  text-align: right;
+}
+
+.btn-t-donasi {
+  width: 100%;
+  background: #ffffff;
+  color: #21A3FF;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 2px solid #21A3FF;
+  border-radius: 50px;
+  padding: 9px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.12s;
+}
+
+.btn-t-donasi:hover {
+  background: #21A3FF;
+  color: #ffffff;
+}
+
+.btn-t-donasi:active {
+  transform: scale(0.96);
+}
+
+.t-detail {
+  display: block;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.8rem;
+  color: #21A3FF;
+  text-decoration: none;
+}
+
+.t-detail:hover {
+  text-decoration: underline;
+}
